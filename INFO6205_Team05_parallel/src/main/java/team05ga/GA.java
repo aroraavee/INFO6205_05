@@ -16,7 +16,7 @@ import team05ga.Route;
 public class GA {
 
     //Method to evolve the population
-    public static Population evolvePopulation(Population pop,Population newPopulation,int num) {
+    public static Population evolvePopulation(Population pop,Population newPopulation) {
  
 
 
@@ -48,7 +48,7 @@ public class GA {
                     while(result.getPopulation().size() < Configuration.numberOfPopulation)
                     {
                       
-                        evolvePopulation(pop, result, 0);
+                        evolvePopulation(pop, result);
                     }
                     
                 

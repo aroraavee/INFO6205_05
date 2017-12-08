@@ -59,12 +59,12 @@ public class Team5GA {
       
       Population newPopulation = new Population();
         
-         GA.evolvePopulation(initalPopulation,newPopulation , Configuration.numberOfPopulation);
+         GA.evolvePopulation(initalPopulation,newPopulation );
         
         //Multiple time evolution 
         for (int i = 0; i < Configuration.numberOfEvolution; i++) {
             Population newTempPopulation = new Population();
-           GA.evolvePopulation(newPopulation,newTempPopulation,0);
+           GA.evolvePopulation(newPopulation,newTempPopulation);
            newPopulation = newTempPopulation;
            
         }
