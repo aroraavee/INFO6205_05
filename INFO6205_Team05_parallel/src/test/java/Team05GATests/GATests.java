@@ -27,21 +27,21 @@ public class GATests {
     public void TSP() {
         Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true);
         //check the population size after evolution
-//        assertEquals(evlovedPopulation.getPopulation().size(), Configuration.numberOfPopulation);
-//        //check the size of cities of fitest route
-//        assertEquals(evlovedPopulation.getFittest(evlovedPopulation).getRouteList().size(), Configuration.numberOfCities);
-//        //checking for Null in the fitest route
-//        HashMap<City, String> checkCities = new HashMap<City, String>();
-//        Route fittest = evlovedPopulation.getFittest(evlovedPopulation);
-//        boolean nullFlag = false;
-//        for (City city : fittest.getRouteList()) {
-//            checkCities.put(city, null);
-//        }
-//         nullFlag = fittest.getRouteList().contains(null);
-//        //check for number of city in fitest route
-//        assertEquals(checkCities.size(), Configuration.numberOfCities);
-//        //check for null
-//        assertEquals(nullFlag, false);
+        assertEquals(evlovedPopulation.getPopulation().size(), Configuration.numberOfPopulation);
+        //check the size of cities of fitest route
+        assertEquals(evlovedPopulation.getFittest(evlovedPopulation).getRouteList().size(), Configuration.numberOfCities);
+        //checking for Null in the fitest route
+        HashMap<City, String> checkCities = new HashMap<City, String>();
+        Route fittest = evlovedPopulation.getFittest(evlovedPopulation);
+        boolean nullFlag = false;
+        for (City city : fittest.getRouteList()) {
+            checkCities.put(city, null);
+        }
+         nullFlag = fittest.getRouteList().contains(null);
+        //check for number of city in fitest route
+        assertEquals(checkCities.size(), Configuration.numberOfCities);
+        //check for null
+        assertEquals(nullFlag, false);
 
     }
     //Test to check the distance method
@@ -94,20 +94,20 @@ public class GATests {
         assertEquals(fittest.Fitness(fittest), 0.0025, 0);
         assertEquals(fittest.Distance(fittest), 400);
     }
-    //Random check for chromosome .
-//    @Test
-//    public void randomCheckAfterMutation() {
-//        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false);
-//        Random r = new Random();
-//        HashMap<City, String> checkCities = new HashMap<City, String>();
-//        boolean nullFlag = false;
-//        for (City city : evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList()) {
-//            checkCities.put(city, null);
-//        }
-//         nullFlag = evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList().contains(null);
-//        assertEquals(checkCities.size(), 10);
-//        assertEquals(nullFlag, false);
-//
-//    }
+   // Random check for chromosome .
+    @Test
+    public void randomCheckAfterMutation() {
+        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false);
+        Random r = new Random();
+        HashMap<City, String> checkCities = new HashMap<City, String>();
+        boolean nullFlag = false;
+        for (City city : evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList()) {
+            checkCities.put(city, null);
+        }
+         nullFlag = evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList().contains(null);
+        assertEquals(checkCities.size(), 10);
+        assertEquals(nullFlag, false);
+
+    }
 
 }

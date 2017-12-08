@@ -22,12 +22,19 @@ public class GA {
 
     
             //use the temp population to get top 2 fitest chromosome and do a crossover them .
-           CompletableFuture<Route> parsort1 = parsort(pop); // TODO implement me
-            CompletableFuture<Route> parsort2 = parsort(pop); // TODO implement me
+           CompletableFuture<Population> parsort1 = parsort(pop); // TODO implement me
+            CompletableFuture<Population> parsort2 = parsort(pop); // TODO implement me
             CompletableFuture<Population> parsort = parsort1.thenCombine(parsort2, (xs1, xs2) -> {
-   
-                newPopulation.getPopulation().add(xs1);
-                newPopulation.getPopulation().add(xs2);
+                    for(Route r :xs1.getPopulation())
+                    {
+                         newPopulation.getPopulation().add(r);
+                    }
+                    
+                     for(Route r :xs2.getPopulation())
+                    {
+                         newPopulation.getPopulation().add(r);
+                    }
+            
                 return newPopulation;
             });
 
@@ -60,10 +67,15 @@ public class GA {
 
     }
     
-    private static CompletableFuture<Route> parsort(Population pop) {
+    private static CompletableFuture<Population> parsort(Population pop) {
         return CompletableFuture.supplyAsync(
                 () -> {
-                            Route child = null;
+                    
+                    Population temp = new Population();
+                    
+                   for(int i =0 ; i <(Configuration.numberOfPopulation/Configuration.numberOfCities) ; i++)
+                   {
+                        Route child = null;
                     Population p1 = tempPopulation(pop);
             child = crossover(p1.getPopulation().get(0), p1.getPopulation().get(1));
             mutate(child);
@@ -71,8 +83,11 @@ public class GA {
             double fitness = child.Fitness(child);
             child.setFittness(fitness);
             child.setDistance(distance);
+            temp.getPopulation().add(child);
+                   }
+                           
                   
-                    return child;
+                    return temp;
                 }
         );
     }

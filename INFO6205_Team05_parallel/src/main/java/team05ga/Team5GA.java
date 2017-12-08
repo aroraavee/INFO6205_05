@@ -62,7 +62,7 @@ public class Team5GA {
          GA.evolvePopulation(initalPopulation,newPopulation , Configuration.numberOfPopulation);
         
         //Multiple time evolution 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < Configuration.numberOfEvolution; i++) {
             Population newTempPopulation = new Population();
            GA.evolvePopulation(newPopulation,newTempPopulation,0);
            newPopulation = newTempPopulation;
@@ -93,8 +93,6 @@ public class Team5GA {
     {
          Route fittestRoute = newPopulation.getFittest(newPopulation);
      
-            System.out.println("avee");
-            System.out.println(newPopulation.getPopulation().size());
             System.out.println("Fittest Route" + fittestRoute);
             System.out.println("Fittnes Value:" + fittestRoute.Fitness(fittestRoute));
             System.out.println("Distance:" + fittestRoute.Distance(fittestRoute));
