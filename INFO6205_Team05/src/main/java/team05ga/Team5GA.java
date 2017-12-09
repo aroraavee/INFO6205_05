@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Random;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -48,13 +49,22 @@ public class Team5GA {
         return initialRoute;
     }
     //Travelling Salesperson Problem method
-    public static Population TSP(int numOfCities, int numOfPopulation, int numOfEvolution, boolean print) {
+    public static Population TSP(int numOfCities, int numOfPopulation, int numOfEvolution, boolean print,boolean graph) {
         logger.info("The run is for "+numOfCities+" number of cities and generating "+numOfPopulation+" number of population with "+numOfEvolution+" number of evolution");
         Population initalPopulation = new Population(numOfPopulation, true, numOfCities);
         logger.info("Initial Population");
         logger.info(initalPopulation.getPopulation());
         Route initialFittest = initalPopulation.getFittest(initalPopulation);
-
+        if(graph)
+        {
+             Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
+         "Initial Route",initialFittest);
+      chart.pack( );          
+      RefineryUtilities.centerFrameOnScreen( chart );          
+      chart.setVisible( true );
+ 
+        }
+      
         Population evolvedPopulation = GA.evolvePopulation(initalPopulation);
         //Multiple time evolution 
         for (int i = 0; i < numOfEvolution; i++) {
@@ -80,6 +90,18 @@ public class Team5GA {
         }
 
         return evolvedPopulation;
+
+    }
+    
+    public static void main(String args[])
+    {
+         Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true ,true);
+            
+         Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
+         "Route",evlovedPopulation.getFittest(evlovedPopulation));
+      chart.pack( );          
+      RefineryUtilities.centerFrameOnScreen( chart );          
+      chart.setVisible( true );
 
     }
 

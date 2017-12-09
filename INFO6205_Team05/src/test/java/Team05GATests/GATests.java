@@ -9,10 +9,12 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.Random;
+import org.jfree.ui.RefineryUtilities;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import team05ga.City;
 import team05ga.Configuration;
+import team05ga.Graph;
 import team05ga.Population;
 import team05ga.Route;
 
@@ -25,7 +27,7 @@ public class GATests {
     
     @Test
     public void TSP() {
-        Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true);
+        Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true,false);
         //check the population size after evolution
         assertEquals(evlovedPopulation.getPopulation().size(), Configuration.numberOfPopulation);
         //check the size of cities of fitest route
@@ -42,7 +44,7 @@ public class GATests {
         assertEquals(checkCities.size(), Configuration.numberOfCities);
         //check for null
         assertEquals(nullFlag, false);
-
+    
     }
     //Test to check the distance method
     @Test
@@ -97,7 +99,7 @@ public class GATests {
     //Random check for chromosome .
     @Test
     public void randomCheckAfterMutation() {
-        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false);
+        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false,false);
         Random r = new Random();
         HashMap<City, String> checkCities = new HashMap<City, String>();
         boolean nullFlag = false;

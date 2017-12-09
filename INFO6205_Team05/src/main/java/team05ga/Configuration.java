@@ -12,9 +12,9 @@ package team05ga;
 public class Configuration {
 
     //Gobal sheet to set number of cities ,population and evolution needed for the test.
-    public static final int numberOfCities = 100;
-    public static final int numberOfPopulation = 1000;
-    public static final int numberOfEvolution = 1000;
+    public static final int numberOfCities = 10;
+    public static final int numberOfPopulation = 100;
+    public static final int numberOfEvolution = 100;
     public static final double mutationRate = 0.001;
 
 }
