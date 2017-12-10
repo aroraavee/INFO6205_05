@@ -49,18 +49,14 @@ public class Team5GA {
     }
     //Travelling Salesperson Problem method
     public static Population TSP(int numOfCities, int numOfPopulation, int numOfEvolution, boolean print) {
-        logger.info("The run is for "+numOfCities+" number of cities and generating "+numOfPopulation+" number of population with "+numOfEvolution+" number of evolution");
+        System.out.println("The run is for "+numOfCities+" number of cities and generating "+numOfPopulation+" number of population with "+numOfEvolution+" number of evolution");
         Population initalPopulation = new Population(numOfPopulation, true, numOfCities);
-        logger.info("Initial Population");
-        logger.info(initalPopulation.getPopulation());
         Route initialFittest = initalPopulation.getFittest(initalPopulation);
           System.out.println("Initial Fitness: " + initialFittest.Fitness(initialFittest));
-  System.out.println("Initial Distance: " + initialFittest.Distance(initialFittest));
-      
+    System.out.println("Initial Distance: " + initialFittest.Distance(initialFittest));
+ 
       Population newPopulation = new Population();
-        
-         GA.evolvePopulation(initalPopulation,newPopulation );
-        
+         GA.evolvePopulation(initalPopulation,newPopulation);
         //Multiple time evolution 
         for (int i = 0; i < Configuration.numberOfEvolution; i++) {
             Population newTempPopulation = new Population();
@@ -96,6 +92,9 @@ public class Team5GA {
             System.out.println("Fittest Route" + fittestRoute);
             System.out.println("Fittnes Value:" + fittestRoute.Fitness(fittestRoute));
             System.out.println("Distance:" + fittestRoute.Distance(fittestRoute));
+            System.out.println("Number of futures created " +GA.count);
+            System.out.println("Number of child created per future="+(Configuration.numberOfPopulation/Configuration.numberOfCities));
+            System.out.println("Number of Evolutions = "+Configuration.numberOfEvolution);
             
     }
 

@@ -94,20 +94,5 @@ public class GATests {
         assertEquals(fittest.Fitness(fittest), 0.0025, 0);
         assertEquals(fittest.Distance(fittest), 400);
     }
-   // Random check for chromosome .
-    @Test
-    public void randomCheckAfterMutation() {
-        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false);
-        Random r = new Random();
-        HashMap<City, String> checkCities = new HashMap<City, String>();
-        boolean nullFlag = false;
-        for (City city : evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList()) {
-            checkCities.put(city, null);
-        }
-         nullFlag = evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList().contains(null);
-        assertEquals(checkCities.size(), 10);
-        assertEquals(nullFlag, false);
-
-    }
-
+ 
 }

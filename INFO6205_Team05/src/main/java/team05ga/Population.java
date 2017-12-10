@@ -34,7 +34,7 @@ public class Population {
         if (inital) {
             population = new ArrayList<>();
             Route route = Team5GA.citites(numberOfCities);
-            for (int i = 0; i < numberOfPopulation; i++) { 
+            for (int i = 0; i < numberOfPopulation; i++) {
                 Route tempRoute = new Route();
                 for (City c : route.getRouteList()) {
                     tempRoute.getRouteList().add(c);

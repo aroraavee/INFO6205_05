@@ -23,9 +23,9 @@ public class Team5GA {
     /**
      * @param args the command line arguments
      */
-    //Method to create Random Cities with differnt coordinates
-    
+
     final static Logger logger = Logger.getLogger(Team5GA.class);
+    //Method to create Random Cities with differnt coordinates
     public static Route citites(int numofCities) {
         Route initialRoute = new Route();
         Route temp = new Route();
@@ -48,34 +48,34 @@ public class Team5GA {
 
         return initialRoute;
     }
+
     //Travelling Salesperson Problem method
-    public static Population TSP(int numOfCities, int numOfPopulation, int numOfEvolution, boolean print,boolean graph) {
-        logger.info("The run is for "+numOfCities+" number of cities and generating "+numOfPopulation+" number of population with "+numOfEvolution+" number of evolution");
+    public static Population TSP(int numOfCities, int numOfPopulation, int numOfEvolution, boolean print, boolean graph) {
+        logger.info("The run is for " + numOfCities + " number of cities and generating " + numOfPopulation + " number of population with " + numOfEvolution + " number of evolution");
         Population initalPopulation = new Population(numOfPopulation, true, numOfCities);
         logger.info("Initial Population");
         logger.info(initalPopulation.getPopulation());
         Route initialFittest = initalPopulation.getFittest(initalPopulation);
-        if(graph)
-        {
-             Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
-         "Initial Route",initialFittest);
-      chart.pack( );          
-      RefineryUtilities.centerFrameOnScreen( chart );          
-      chart.setVisible( true );
- 
+        if (graph) {
+            Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
+                    "Initial Route", initialFittest);
+            chart.pack();
+            RefineryUtilities.centerFrameOnScreen(chart);
+            chart.setVisible(true);
+
         }
-      
+
         Population evolvedPopulation = GA.evolvePopulation(initalPopulation);
         //Multiple time evolution 
         for (int i = 0; i < numOfEvolution; i++) {
 
             evolvedPopulation = GA.evolvePopulation(evolvedPopulation);
-           
+
         }
 
         Route fittestRoute = evolvedPopulation.getFittest(evolvedPopulation);
         if (print) {
-            
+            System.out.println("The run is for " + numOfCities + " number of cities and generating " + numOfPopulation + " number of population with " + numOfEvolution + " number of evolution");
             System.out.println("Initial Fitness: " + initialFittest.Fitness(initialFittest));
             System.out.println("Initial Distance: " + initialFittest.Distance(initialFittest));
             System.out.println("Fittest Route" + fittestRoute);
@@ -92,16 +92,16 @@ public class Team5GA {
         return evolvedPopulation;
 
     }
-    
-    public static void main(String args[])
-    {
-         Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true ,true);
-            
-         Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
-         "Route",evlovedPopulation.getFittest(evlovedPopulation));
-      chart.pack( );          
-      RefineryUtilities.centerFrameOnScreen( chart );          
-      chart.setVisible( true );
+
+    //Main method to generate the Graph 
+    public static void main(String args[]) {
+        Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true, true);
+
+        Graph chart = new Graph("Genetic Algorith to solve Travelling Salesperson Problem",
+                "Fittest Route", evlovedPopulation.getFittest(evlovedPopulation));
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen(chart);
+        chart.setVisible(true);
 
     }
 

@@ -16,7 +16,7 @@ public class GA {
         Population newPopulation = null;
         Route child = null;
         newPopulation = new Population();
-        for (int i = 0; i < pop.getPopulation().size(); i++) {
+        while (newPopulation.getPopulation().size() < Configuration.numberOfPopulation) {
             //use the temp population to get top 2 fitest chromosome and do a crossover them .
             Population p1 = tempPopulation(pop);
             child = crossover(p1.getPopulation().get(0), p1.getPopulation().get(1));
@@ -25,6 +25,7 @@ public class GA {
             double fitness = child.Fitness(child);
             child.setFittness(fitness);
             child.setDistance(distance);
+            newPopulation.getPopulation().add(p1.getPopulation().get(0));
             newPopulation.getPopulation().add(child);
 
         }

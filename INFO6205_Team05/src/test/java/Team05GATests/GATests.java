@@ -18,16 +18,15 @@ import team05ga.Graph;
 import team05ga.Population;
 import team05ga.Route;
 
-
 /**
  *
  * @author Avee Arora
  */
 public class GATests {
-    
+
     @Test
     public void TSP() {
-        Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true,false);
+        Population evlovedPopulation = team05ga.Team5GA.TSP(Configuration.numberOfCities, Configuration.numberOfPopulation, Configuration.numberOfEvolution, true, false);
         //check the population size after evolution
         assertEquals(evlovedPopulation.getPopulation().size(), Configuration.numberOfPopulation);
         //check the size of cities of fitest route
@@ -39,13 +38,14 @@ public class GATests {
         for (City city : fittest.getRouteList()) {
             checkCities.put(city, null);
         }
-         nullFlag = fittest.getRouteList().contains(null);
+        nullFlag = fittest.getRouteList().contains(null);
         //check for number of city in fitest route
         assertEquals(checkCities.size(), Configuration.numberOfCities);
         //check for null
         assertEquals(nullFlag, false);
-    
+
     }
+
     //Test to check the distance method
     @Test
     public void distanceTest() {
@@ -58,6 +58,7 @@ public class GATests {
         route.getRouteList().add(c2);
         assertEquals(route.Distance(route), 400);
     }
+
     //Test to check the fitness Method
     @Test
     public void fitnessTest() {
@@ -70,6 +71,7 @@ public class GATests {
         route.getRouteList().add(c2);
         assertEquals(route.Fitness(route), 0.0025, 0);
     }
+
     //Test to check the fites route
     @Test
     public void fitnessFunction() {
@@ -96,17 +98,18 @@ public class GATests {
         assertEquals(fittest.Fitness(fittest), 0.0025, 0);
         assertEquals(fittest.Distance(fittest), 400);
     }
+
     //Random check for chromosome .
     @Test
     public void randomCheckAfterMutation() {
-        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false,false);
+        Population evlovedPopulation = team05ga.Team5GA.TSP(10, 20, 1, false, false);
         Random r = new Random();
         HashMap<City, String> checkCities = new HashMap<City, String>();
         boolean nullFlag = false;
         for (City city : evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList()) {
             checkCities.put(city, null);
         }
-         nullFlag = evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList().contains(null);
+        nullFlag = evlovedPopulation.getPopulation().get(r.nextInt(20)).getRouteList().contains(null);
         assertEquals(checkCities.size(), 10);
         assertEquals(nullFlag, false);
 

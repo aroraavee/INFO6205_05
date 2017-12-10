@@ -34,6 +34,7 @@ public class Route {
         distance = 0;
     }
 //Method to calculate the Distance 
+
     public int Distance(Route route) {
         if (route.getDistance() == 0) {
             int tourDistance = 0;
@@ -52,6 +53,7 @@ public class Route {
         return distance;
     }
 
+    //Method to get the Fitness Value 
     public double Fitness(Route route) {
         if (route.getFittness() == 0) {
             route.setFittness(1 / (double) Distance(route));
@@ -82,6 +84,7 @@ public class Route {
     public void setRouteList(ArrayList<City> routeList) {
         this.routeList = routeList;
     }
+//To string to print the route 
 
     @Override
     public String toString() {

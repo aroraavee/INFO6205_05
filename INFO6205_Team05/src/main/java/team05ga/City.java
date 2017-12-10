@@ -10,26 +10,27 @@ package team05ga;
  * @author Avee Arora
  */
 public class City {
-    
+
     private String name;
     private int x;
     private int y;
 
-    public City(int x , int y , String name)
-    {
+    public City(int x, int y, String name) {
         this.x = x;
         this.y = y;
-        this.name = name ;
-                
+        this.name = name;
+
     }
+
     //calculate distance between two cities
-    public double distanceTo(City city){
+    public double distanceTo(City city) {
         int xDistance = Math.abs(getX() - city.getX());
         int yDistance = Math.abs(getY() - city.getY());
-        double distance = Math.sqrt( (xDistance*xDistance) + (yDistance*yDistance) );
-        
+        double distance = Math.sqrt((xDistance * xDistance) + (yDistance * yDistance));
+
         return distance;
     }
+
     public String getName() {
         return name;
     }
@@ -53,6 +54,5 @@ public class City {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
+
 }

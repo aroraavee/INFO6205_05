@@ -15,78 +15,65 @@ import team05ga.Route;
  */
 public class GA {
 
+    public static int count = 0;
+
     //Method to evolve the population
-    public static Population evolvePopulation(Population pop,Population newPopulation) {
- 
+    public static Population evolvePopulation(Population pop, Population newPopulation) {
+        //use the temp population to get top 2 fitest chromosome and do a crossover them .
+        count = count + 2;
+        //Future to create the childs
+        CompletableFuture<Population> temPopulation1 = temPopulation(pop);
+        CompletableFuture<Population> temPopulation2 = temPopulation(pop);
+        CompletableFuture<Population> temPopulation = temPopulation1.thenCombine(temPopulation2, (xs1, xs2) -> {
+            //Add the childs to the population     
+            for (Route r : xs1.getPopulation()) {
+                newPopulation.getPopulation().add(r);
+            }
 
+            for (Route r : xs2.getPopulation()) {
+                newPopulation.getPopulation().add(r);
+            }
 
-    
-            //use the temp population to get top 2 fitest chromosome and do a crossover them .
-           CompletableFuture<Population> parsort1 = parsort(pop); // TODO implement me
-            CompletableFuture<Population> parsort2 = parsort(pop); // TODO implement me
-            CompletableFuture<Population> parsort = parsort1.thenCombine(parsort2, (xs1, xs2) -> {
-                    for(Route r :xs1.getPopulation())
-                    {
-                         newPopulation.getPopulation().add(r);
-                    }
-                    
-                     for(Route r :xs2.getPopulation())
-                    {
-                         newPopulation.getPopulation().add(r);
-                    }
-            
-                return newPopulation;
-            });
+            return newPopulation;
+        });
 
-            parsort.whenComplete((result, throwable) -> {
-                if (throwable == null) {
-                    boolean flag = false;
-                    if(result.getPopulation().size() >= Configuration.numberOfPopulation)
-                    {
-                        flag = true;
-                    }
-                    while(result.getPopulation().size() < Configuration.numberOfPopulation)
-                    {
-                      
-                        evolvePopulation(pop, result);
-                    }
-                    
-                
-                  
-                } else {
-                    System.out.println(throwable.getMessage());
+        temPopulation.whenComplete((result, throwable) -> {
+            if (throwable == null) {
+                boolean flag = false;
+                if (result.getPopulation().size() >= Configuration.numberOfPopulation) {
+                    flag = true;
                 }
-            }); // TODO implement me
-            parsort.join();
-            
-          
+                while (result.getPopulation().size() < Configuration.numberOfPopulation) {
 
-        
-
+                    evolvePopulation(pop, result);
+                }
+            } else {
+                System.out.println(throwable.getMessage());
+            }
+        });
+        temPopulation.join();
         return newPopulation;
 
     }
-    
-    private static CompletableFuture<Population> parsort(Population pop) {
+//Future to generate a child .
+    private static CompletableFuture<Population> temPopulation(Population pop) {
         return CompletableFuture.supplyAsync(
                 () -> {
-                    
+
                     Population temp = new Population();
-                    
-                   for(int i =0 ; i <(Configuration.numberOfPopulation/Configuration.numberOfCities) ; i++)
-                   {
+
+                    for (int i = 0; i < (Configuration.numberOfPopulation / Configuration.numberOfCities); i++) {
                         Route child = null;
-                    Population p1 = tempPopulation(pop);
-            child = crossover(p1.getPopulation().get(0), p1.getPopulation().get(1));
-            mutate(child);
-            int distance = child.Distance(child);
-            double fitness = child.Fitness(child);
-            child.setFittness(fitness);
-            child.setDistance(distance);
-            temp.getPopulation().add(child);
-                   }
-                           
-                  
+                        Population p1 = tempPopulation(pop);
+                        child = crossover(p1.getPopulation().get(0), p1.getPopulation().get(1));
+                        mutate(child);
+                        int distance = child.Distance(child);
+                        double fitness = child.Fitness(child);
+                        child.setFittness(fitness);
+                        child.setDistance(distance);
+                        temp.getPopulation().add(child);
+                    }
+
                     return temp;
                 }
         );
