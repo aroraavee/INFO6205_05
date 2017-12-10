@@ -1,7 +1,7 @@
 # INFO6205_05 : Team 05 
 Traveling Salesman Problem solved with Genetic Algorithm 
 
-Presentation link : https://prezi.com/view/4ZR3MRhKlw1XKs5HlUqf/
+Presentation link : https://prezi.com/view/4ZR3MRhKlw1XKs5HlUqf/ (Open in Chrom Browser ) .
 
 Solution :  
 1.Gene and Chromosome  
