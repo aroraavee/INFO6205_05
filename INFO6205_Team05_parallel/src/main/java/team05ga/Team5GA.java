@@ -66,22 +66,6 @@ public class Team5GA {
         }
          print(newPopulation);
 
-//        Route fittestRoute = newPopulation.getFittest(newPopulation);
-//        if (print) {
-//            
-//            System.out.println("Initial Fitness: " + initialFittest.Fitness(initialFittest));
-//            System.out.println("Initial Distance: " + initialFittest.Distance(initialFittest));
-//            System.out.println("Fittest Route" + fittestRoute);
-//            System.out.println("Fittnes Value:" + fittestRoute.Fitness(fittestRoute));
-//            System.out.println("Distance:" + fittestRoute.Distance(fittestRoute));
-//            logger.info("Final Results");
-//            logger.info("Initial Fitness: " + initialFittest.Fitness(initialFittest));
-//            logger.info("Initial Distance: " + initialFittest.Distance(initialFittest));
-//            logger.info("Fittest Route: " + fittestRoute);
-//            logger.info("Fittnes Value:" + fittestRoute.Fitness(fittestRoute));
-//            logger.info("Distance:" + fittestRoute.Distance(fittestRoute));
-//        }
-
         return newPopulation;
 
     }
